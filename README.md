@@ -4,6 +4,6 @@
  </b>
  <ul>
     <li>Login or register</li>
-    <li>Finish course</li>
+    <li>System prog</li>
     <li>...</li>
  </ul>

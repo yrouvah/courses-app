@@ -39,7 +39,7 @@ Route::middleware([
 Route::group(['auth:sanctum', 'verified'], function(){
     Route::get('/courses/{id}', 'App\Http\Controllers\CoursesController@show')->name('courses.show');
 
-    Route::get('/toggleProgress', 'App\Http\Controllers\CoursesController@toggleProgress')->name('courses.toggle');
+    Route::post('/toggleProgress', 'App\Http\Controllers\CoursesController@toggleProgress')->name('courses.toggle');
 
     Route::get('/dashboard', function(){
         return Inertia::render('Dashboard');

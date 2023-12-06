@@ -20,7 +20,7 @@
                                 Voir l'épisode
                             </button>
                         </div>
-                        <progress-button  :episode-id="episode.id"/>
+                        <progress-button  :episodeId="episode.id" :watched-episodes="watched"/>
                     </li>
                 </ul>
 
@@ -40,7 +40,7 @@ export default {
         AppLayout,
         ProgressButton
     },
-    props: ['course'],
+    props: ['course', 'watched'],
 
     data() {
         return {
