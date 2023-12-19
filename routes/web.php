@@ -41,6 +41,8 @@ Route::group(['auth:sanctum', 'verified'], function(){
 
     Route::post('/toggleProgress', 'App\Http\Controllers\CoursesController@toggleProgress')->name('courses.toggle');
 
+    Route::post('/courses', 'App\Http\Controllers\CoursesController@store');
+
     Route::get('/dashboard', function(){
         return Inertia::render('Dashboard');
      })->name('dashboard') ;
