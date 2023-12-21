@@ -4,6 +4,6 @@
  </b>
  <ul>
     <li>Login or register</li>
-    <li>System prog</li>
-    <li>...</li>
+    <li>Post and view courses with system progressbar</li>
+    <li>Add multiple episode on course</li>
  </ul>
