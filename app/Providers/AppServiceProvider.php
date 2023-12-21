@@ -33,5 +33,14 @@ class AppServiceProvider extends ServiceProvider
         //         'success'=>Session::get('success'),
         //     ];
         // });
+
+        //Validation de forms
+        Inertia::share([
+            'erros'=>function(){
+                return Session::get('erros')
+                ? Session::get('errors')->getBag('default')->getMessages()
+                :(object)[];
+            },
+        ]);
     }
 }

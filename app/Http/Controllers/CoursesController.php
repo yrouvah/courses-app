@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 use App\Models\Course;
+use App\Models\Episode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -26,7 +27,7 @@ class CoursesController extends Controller
         ]);
     }
 
-    public function show(int $id){
+    public function show(string $id){
         $course= Course::where('id', $id)->with('episodes')->first();
         $watched =auth()->user()->episodes;
 
@@ -38,7 +39,25 @@ class CoursesController extends Controller
 
     public function store(Request $request)
     {
-        Course::create($request->all());
+
+        $request->validate([
+            'title'=>'required',
+            'description'=>'required',
+            'episodes'=>['required','array'],
+            'episodes.*.title'=>'required',
+            'episodes.*.description'=>'required',
+            'episodes.*.video_url'=>'required'
+        ]);
+
+       $course= Course::create($request->all());
+
+       foreach($request->input('episodes') as $episode)
+       {
+
+        $episode['course_id']=$course->id;
+        Episode::create($episode);
+
+       }
 
        return  Redirect::route('dashboard');
 
