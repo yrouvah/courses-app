@@ -43,6 +43,9 @@ Route::group(['auth:sanctum', 'verified'], function(){
 
     Route::post('/courses', 'App\Http\Controllers\CoursesController@store');
 
+    Route::get('/courses/edit/{id}', 'App\Http\Controllers\CoursesController@edit');
+    Route::patch('/courses/{id}', 'App\Http\Controllers\CoursesController@update');
+
     Route::get('/dashboard', function(){
         return Inertia::render('Dashboard');
      })->name('dashboard') ;

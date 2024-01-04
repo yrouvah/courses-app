@@ -20,7 +20,7 @@ class CoursesController extends Controller
             WHERE episodes.course_id = courses.id)
             AS participants'
         ))
-        ->withCount('episodes')->latest()->get();
+        ->withCount('episodes')->latest()->paginate(5);
 
         return Inertia::render('Courses/Index',[
             'courses'=>$courses
@@ -64,6 +64,32 @@ class CoursesController extends Controller
     //    return  Redirect::route('dashboard')->with('success',
     //      'Félicitation, la formation a bien été mise en ligne.  ');
 
+    }
+
+    public function edit(int $id)
+    {
+        $course= Course::where('id', $id)->with('episodes')->first();
+        $this->authorize('update', $course);
+
+        return Inertia::render('Courses/Edit',[
+            'course'=>$course
+        ]);
+    }
+
+    public function update(Request $request)
+    {
+        $course=  Course::where('id',$request->id)->with('episodes')->first();
+        $this->authorize('update', $course);
+
+        $course->update($request->all());
+        $course->episodes()->delete();
+
+        foreach($request->episodes as $episode){
+            $episode['course_id']=$course->id;
+            Episode::create($episode);
+        }
+
+        return  Redirect::route('courses.index');
     }
 
     public function toggleProgress(Request $request)

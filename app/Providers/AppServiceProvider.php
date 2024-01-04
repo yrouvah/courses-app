@@ -3,6 +3,9 @@
 namespace App\Providers;
 
 use Inertia\Inertia;
+use App\Models\Course;
+use App\Policies\CoursePolicy;
+use Illuminate\Auth\Access\Gate;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\ServiceProvider;
@@ -14,10 +17,9 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
-    {
-        //
-    }
+    protected $policies=[
+        'App\Model\Course'=>'App\Policies\CoursePolicy',
+    ];
 
     /**
      * Bootstrap any application services.
@@ -28,19 +30,21 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
-        // Inertia::share('flash', function(){
-        //     return[
-        //         'success'=>Session::get('success'),
-        //     ];
-        // });
+        Inertia::share('flash', function(){
+                return[
+                        'success'=>Session::get('success'),
+                    ];
+        });
 
         //Validation de forms
         Inertia::share([
             'erros'=>function(){
-                return Session::get('erros')
+                return Session::get('errors')
                 ? Session::get('errors')->getBag('default')->getMessages()
                 :(object)[];
             },
         ]);
+
+
     }
 }
