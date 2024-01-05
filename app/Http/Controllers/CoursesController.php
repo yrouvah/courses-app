@@ -59,10 +59,10 @@ class CoursesController extends Controller
 
        }
 
-       return  Redirect::route('dashboard');
+    //    return  Redirect::route('dashboard');
 
-    //    return  Redirect::route('dashboard')->with('success',
-    //      'Félicitation, la formation a bien été mise en ligne.  ');
+       return  Redirect::route('dashboard')->with('success',
+         'Félicitation, la formation a bien été mise en ligne.');
 
     }
 

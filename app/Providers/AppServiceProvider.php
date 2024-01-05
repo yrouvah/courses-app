@@ -30,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
+        // Flash message
         Inertia::share('flash', function(){
                 return[
                         'success'=>Session::get('success'),
