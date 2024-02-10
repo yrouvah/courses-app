@@ -5,5 +5,6 @@
  <ul>
     <li>Login or register</li>
     <li>Post and view courses with system progressbar</li>
-    <li>Add multiple episode on course</li>
+    <li>Add multiple episode on courses</li>
+    <li>Possibility to modify if its yours</li>
  </ul>
