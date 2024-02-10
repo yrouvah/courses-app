@@ -29,6 +29,7 @@
                 </div>
             </div>
 
+            <!-- systeme de pagination -->
             <inertia-link :href="link.url" class="text-indigo-500 border-gray-500 p-5"
              v-for="link in courses.links"  v-bind:key="link.label">
                 <span v-bind:class="{ 'text-red-700': link.active }">
@@ -43,6 +44,7 @@
 <script>
 
 import AppLayout from './../../Layouts/AppLayout.vue'
+import NavLink from '@/Components/NavLink.vue';
 
 export default {
     components: {

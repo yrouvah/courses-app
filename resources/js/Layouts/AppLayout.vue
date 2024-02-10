@@ -52,11 +52,12 @@ const logout = () => {
                                  <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </NavLink>
-
-                                  <NavLink :href="route('dashboard')" :active="route('').current('')">
-                                    Les formations
-                                </NavLink>
+                                
+                                <NavLink :href="route('dashboard')" :active="route().current('')">
+                                   Formations
+                               </NavLink>
                             </div>
+                           
                         </div>
 
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -286,7 +287,7 @@ const logout = () => {
 
             <!-- Page Content -->
             <main>
-                <slot />
+                <slot ></slot>
             </main>
         </div>
     </div>

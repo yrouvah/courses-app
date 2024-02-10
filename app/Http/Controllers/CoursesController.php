@@ -6,12 +6,18 @@ use App\Models\Course;
 use App\Models\Episode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Redirect;
+
+use GuzzleHttp\Client;
 
 class CoursesController extends Controller
 {
     public function index()
     {
+        // $response = Http::get('https://www.googleapis.com/youtube/v3/videos?key=AIzaSyCvdHyQY3xe67rONXDYK2GCXaAC9vrzFTE&id=6YodQGxEmHs&part=contentDetails');
+        // dd($response);
+
         $courses= Course::with('user')
         ->select('courses.*', DB::raw(
             '(SELECT COUNT(DISTINCT(user_id))
